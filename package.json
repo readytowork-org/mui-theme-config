@@ -1,12 +1,22 @@
 {
   "name": "mui-theme-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
+  "author": "rtw",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "npm version patch -f && npm publish"
+    "prepare": "npm run build",
+    "release": "npm version patch -f && git push && git push --tags",
+    "publish": "npm version patch -f&& npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/readytowork-org/mui-theme-config.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
