@@ -6,3 +6,4 @@ This package provides a shareable MUI theme configuration that can be used acros
 ```bash
 npm install mui-theme-config
 yarn add mui-theme-config
+```
