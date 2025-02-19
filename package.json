@@ -1,11 +1,17 @@
 {
   "name": "mui-theme-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "rtw",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "keywords": ["mui", "theme", "config", "react", "typescript"],
+  "keywords": [
+    "mui",
+    "theme",
+    "config",
+    "react",
+    "typescript"
+  ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
