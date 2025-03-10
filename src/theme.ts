@@ -376,6 +376,7 @@ export const createMuiTheme = (overrides?: ThemeOptions) => {
           },
         },
       },
-    }
+    },
+    ...(overrides??{})
   });
 }
