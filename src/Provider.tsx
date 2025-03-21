@@ -1,20 +1,26 @@
 import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
 import React, { ReactNode } from "react";
-import { APP_THEME } from "./theme";
+import { APP_THEME, COLORS, Colors } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 
 interface MuiProviderProps {
   children: ReactNode;
   theme?: Theme;
+  colors?: Colors;
 }
 
 export const MuiProvider: React.FC<MuiProviderProps> = ({
   children,
   theme,
+  colors,
 }) => {
   return (
-    <ThemeProvider theme={createTheme(deepmerge(APP_THEME, theme))}>
+    <ThemeProvider
+      theme={createTheme(
+        deepmerge(APP_THEME(deepmerge(COLORS, colors)), theme),
+      )}
+    >
       <CssBaseline />
       {children}
     </ThemeProvider>

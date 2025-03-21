@@ -1,13 +1,55 @@
 "use client";
 
-import { createTheme } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material/styles";
 import React from "react";
 // noinspection TypeScriptCheckImport, ES6UnusedImports
 // @ts-ignore
 import type {} from "@mui/x-date-pickers/themeAugmentation";
 import { Typography } from "@mui/material";
+import { PaletteOptions } from "@mui/material/styles/createPalette";
+import { CssVarsThemeOptions } from "@mui/material/styles/createThemeWithVars";
 
-const COLORS = {
+export interface Colors {
+  palette: PaletteOptions;
+  components: {
+    menu: {
+      item: {
+        selected: string;
+      };
+    };
+    input: {
+      border: {
+        default: string;
+        hover: string;
+        focus: string;
+        lightGray: string;
+      };
+      boxShadow: {
+        focus: string;
+      };
+      error: {
+        boxShadow: {
+          hover: string;
+          focus: string;
+        };
+      };
+    };
+    radio: {
+      outer: string;
+      checkedCircle: string;
+    };
+    select: {
+      multiple: {
+        chip: {
+          backgroundColor: string;
+          text: string;
+        };
+      };
+    };
+  };
+}
+
+export const COLORS: Colors = {
   palette: {
     primary: {
       main: "#0671D5",
@@ -68,7 +110,24 @@ const COLORS = {
   },
 };
 
-export const APP_THEME = createTheme({
+export const APP_THEME = (
+  COLORS: Colors,
+): Omit<ThemeOptions, "components"> &
+  Pick<
+    CssVarsThemeOptions,
+    "defaultColorScheme" | "colorSchemes" | "components"
+  > & {
+    cssVariables?:
+      | boolean
+      | Pick<
+          CssVarsThemeOptions,
+          | "colorSchemeSelector"
+          | "rootSelector"
+          | "disableCssColorScheme"
+          | "cssVarPrefix"
+          | "shouldSkipGeneratingVar"
+        >;
+  } => ({
   palette: COLORS.palette,
   components: {
     // @ts-ignore
