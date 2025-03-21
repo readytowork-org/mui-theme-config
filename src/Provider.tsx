@@ -1,12 +1,28 @@
-import { CssBaseline, Theme, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import React, { ReactNode } from "react";
 import { APP_THEME, COLORS, Colors } from "./theme";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
+import { CssVarsThemeOptions } from "@mui/material/styles/createThemeWithVars";
 
 interface MuiProviderProps {
   children: ReactNode;
-  theme?: Theme;
+  theme?: Omit<ThemeOptions, "components"> &
+    Pick<
+      CssVarsThemeOptions,
+      "defaultColorScheme" | "colorSchemes" | "components"
+    > & {
+      cssVariables?:
+        | boolean
+        | Pick<
+            CssVarsThemeOptions,
+            | "colorSchemeSelector"
+            | "rootSelector"
+            | "disableCssColorScheme"
+            | "cssVarPrefix"
+            | "shouldSkipGeneratingVar"
+          >;
+    };
   colors?: Colors;
 }
 
