@@ -571,17 +571,6 @@ export const APP_THEME = (
           padding: "0 16px",
         },
       },
-      variants: [
-        {
-          props: { variant: "contained" }, // Custom variant name
-          style: {
-            background:
-              "linear-gradient(140.27deg, #077DC1 22.64%, #02257C 62.68%)",
-            color: "#ffff",
-            borderRadius: "6px",
-          },
-        },
-      ],
     },
     MuiPaper: {
       styleOverrides: {
