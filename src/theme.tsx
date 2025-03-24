@@ -11,13 +11,13 @@ import { CssVarsThemeOptions } from "@mui/material/styles/createThemeWithVars";
 
 export interface Colors {
   palette: PaletteOptions;
-  components: {
-    menu: {
+  components?: {
+    menu?: {
       item: {
         selected: string;
       };
     };
-    input: {
+    input?: {
       border: {
         default: string;
         hover: string;
@@ -34,11 +34,11 @@ export interface Colors {
         };
       };
     };
-    radio: {
+    radio?: {
       outer: string;
       checkedCircle: string;
     };
-    select: {
+    select?: {
       multiple: {
         chip: {
           backgroundColor: string;
@@ -312,7 +312,7 @@ export const APP_THEME = (
         tag: ({ theme }) => ({
           color: theme.palette.text.secondary,
           fontSize: "inherit",
-          background: COLORS.components.select.multiple.chip.backgroundColor,
+          background: COLORS.components?.select?.multiple.chip.backgroundColor,
           borderRadius: "4px",
           height: "unset",
           padding: "4px 0",
@@ -349,7 +349,8 @@ export const APP_THEME = (
           "& .MuiChip-root": {
             color: theme.palette.text.secondary,
             fontSize: "inherit",
-            background: COLORS.components.select.multiple.chip.backgroundColor,
+            background:
+              COLORS.components?.select?.multiple.chip.backgroundColor,
             borderRadius: "4px",
             height: "unset",
             padding: "4px 0",
@@ -402,24 +403,24 @@ export const APP_THEME = (
 
           "& .MuiOutlinedInput-notchedOutline": {
             borderRadius: "6px",
-            border: `1px solid ${COLORS.components.input.border.default}`,
+            border: `1px solid ${COLORS.components?.input?.border.default}`,
             transition: "all 0.2s",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            border: `1px solid ${COLORS.components.input.border.hover}`,
+            border: `1px solid ${COLORS.components?.input?.border.hover}`,
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            border: `1px solid ${COLORS.components.input.border.focus}`,
-            boxShadow: `0 0 0 2px ${COLORS.components.input.boxShadow.focus}`,
+            border: `1px solid ${COLORS.components?.input?.border.focus}`,
+            boxShadow: `0 0 0 2px ${COLORS.components?.input?.boxShadow.focus}`,
           },
           "&.Mui-error .MuiOutlinedInput-notchedOutline": {
             border: `1px solid ${theme.palette.error.main}`,
           },
           "&:hover.Mui-error .MuiOutlinedInput-notchedOutline": {
-            boxShadow: `0 0 0 2px ${COLORS.components.input.error.boxShadow.hover}`,
+            boxShadow: `0 0 0 2px ${COLORS.components?.input?.error.boxShadow.hover}`,
           },
           "&.Mui-error.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            boxShadow: `0 0 0 2px ${COLORS.components.input.error.boxShadow.focus}`,
+            boxShadow: `0 0 0 2px ${COLORS.components?.input?.error.boxShadow.focus}`,
           },
         }),
         sizeSmall: {
@@ -451,7 +452,7 @@ export const APP_THEME = (
             style={{
               width: "20px",
               height: "20px",
-              border: `1px solid ${COLORS.components.radio.outer}`,
+              border: `1px solid ${COLORS.components?.radio?.outer}`,
               borderRadius: "50%",
             }}
           >
@@ -461,7 +462,7 @@ export const APP_THEME = (
                 height: "12px",
                 margin: "3px",
                 borderRadius: "50%",
-                backgroundColor: COLORS.components.radio.checkedCircle,
+                backgroundColor: COLORS.components?.radio?.checkedCircle,
               }}
             />
           </div>
@@ -471,7 +472,7 @@ export const APP_THEME = (
             style={{
               width: "20px",
               height: "20px",
-              border: `1px solid ${COLORS.components.radio.outer}`,
+              border: `1px solid ${COLORS.components?.radio?.outer}`,
               borderRadius: "50%",
             }}
           />
@@ -490,12 +491,12 @@ export const APP_THEME = (
             style={{
               width: "20px",
               height: "20px",
-              border: `1px solid ${COLORS.components.radio.checkedCircle}`,
+              border: `1px solid ${COLORS.components?.radio?.checkedCircle}`,
               borderRadius: "2px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: COLORS.components.radio.checkedCircle,
+              backgroundColor: COLORS.components?.radio?.checkedCircle,
             }}
           >
             <img
@@ -511,7 +512,7 @@ export const APP_THEME = (
             style={{
               width: "20px",
               height: "20px",
-              border: `1px solid ${COLORS.components.radio.outer}`,
+              border: `1px solid ${COLORS.components?.radio?.outer}`,
               borderRadius: "4px",
               backgroundColor: "#fff",
             }}
@@ -597,13 +598,13 @@ export const APP_THEME = (
           fontSize: "14px",
 
           "&.Mui-selected": {
-            background: COLORS.components.menu.item.selected,
+            background: COLORS.components?.menu?.item.selected,
             "&.Mui-focusVisible": {
-              background: COLORS.components.menu.item.selected,
+              background: COLORS.components?.menu?.item.selected,
             },
 
             ":hover": {
-              background: COLORS.components.menu.item.selected,
+              background: COLORS.components?.menu?.item.selected,
             },
           },
           "&.Mui-focusVisible": {
