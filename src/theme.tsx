@@ -398,7 +398,6 @@ export const APP_THEME = (
         root: ({ theme }) => ({
           fontSize: 14,
           padding: "10px 12px",
-          alignItems: "flex-end",
           backgroundColor: "#FFFFFF",
 
           "& .MuiOutlinedInput-notchedOutline": {
