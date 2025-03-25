@@ -3,8 +3,8 @@
   "version": "2.1.0",
   "license": "MIT",
   "author": "rtw",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "mui",
     "theme",
@@ -25,7 +25,7 @@
     "access": "public"
   },
   "files": [
-    "dist/**/*"
+    "**/*"
   ],
   "dependencies": {
     "@emotion/react": "^11.14.0",
