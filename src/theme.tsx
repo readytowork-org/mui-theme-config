@@ -399,6 +399,7 @@ export const APP_THEME = (
           fontSize: 14,
           padding: "10px 12px",
           backgroundColor: "#FFFFFF",
+          alignItems: "unset",
 
           "& .MuiOutlinedInput-notchedOutline": {
             borderRadius: "6px",
