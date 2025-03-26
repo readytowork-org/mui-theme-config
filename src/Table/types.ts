@@ -1,6 +1,10 @@
-import { TableCellProps } from "@mui/material";
+import { TableCellProps } from "@mui/material/TableCell";
+import { TableContainerProps } from "@mui/material/TableContainer";
+import { TypographyProps } from "@mui/material/Typography";
+import { TableProps as MuiTableProps } from "@mui/material/Table";
 import React from "react";
 import { PaginationProps } from "../TablePagination/types";
+import { BoxProps } from "@mui/material/Box";
 
 export interface ActionColumns {
   actions: object;
@@ -30,4 +34,10 @@ export interface TableProps<T extends object> {
   title?: string;
   data: T[];
   noData?: React.ReactNode;
+  slotProps?: {
+    root?: TableContainerProps;
+    titleBar?: BoxProps;
+    title?: TypographyProps;
+    table?: MuiTableProps;
+  };
 }

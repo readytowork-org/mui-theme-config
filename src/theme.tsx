@@ -163,7 +163,25 @@ export const APP_THEME = (
         },
       },
     },
-
+    MuiTableCell: {
+      styleOverrides: {
+        head: ({ theme }) => ({
+          backgroundColor: "unset",
+          color: theme.palette.common.black,
+          fontSize: "16px",
+          fontWeight: "700",
+          textTransform: "uppercase",
+        }),
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        root: {
+          justifyContent: "unset",
+          gap: "10px",
+        },
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
         labelDisplayedRows: ({ from, to, count }) => (
