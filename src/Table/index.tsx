@@ -1,7 +1,6 @@
 import {
   Box,
   CircularProgress,
-  Paper,
   styled,
   Table as MuiTable,
   TableBody,
@@ -17,15 +16,12 @@ import {
 } from "@mui/material";
 import React, { Key, useEffect, useMemo, useState } from "react";
 import { ColumnType, TableProps } from "./types";
-import TablePagination from "../TablePagination";
 
 function Table<Data extends object>({
   columns,
   isLoading = false,
   children,
-  pagination,
   data = [],
-  title,
   noData,
   slotProps,
 }: TableProps<Data>) {
@@ -69,9 +65,6 @@ function Table<Data extends object>({
     });
   }, [data, orderBy, order]);
 
-  const rowsPerPage = pagination?.rowsPerPage || 5;
-  const currentPage = pagination?.page || 1;
-
   const getSortMessage = (columnId: ColumnType<Data>["id"]) => {
     if (orderBy === columnId) {
       return order === "asc"
@@ -100,175 +93,136 @@ function Table<Data extends object>({
 
   return (
     isClient && (
-      <>
-        <TableContainer {...slotProps?.root}>
-          <Box
-            {...slotProps?.titleBar}
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0px 20px",
-              ...slotProps?.titleBar?.sx,
-            }}
-          >
-            <Typography
-              {...slotProps?.title}
-              sx={{
-                padding: "20px 0px",
-                ...slotProps?.title?.sx,
-              }}
-            >
-              {title}
-            </Typography>
-
-            <TablePagination
-              rowsPerPage={rowsPerPage}
-              count={pagination?.count || 0}
-              page={currentPage}
-              onPageChange={pagination?.onPageChange}
-              padding={"10px 0px 0px 20px"}
-            />
-          </Box>
-
-          <MuiTable stickyHeader {...slotProps?.table}>
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id as Key}
-                    align={column.align}
-                    sx={{
-                      minWidth: column.minWidth,
-                    }}
-                    sortDirection={
-                      orderBy === column.id && order !== undefined
-                        ? order
-                        : false
+      <TableContainer {...slotProps?.root}>
+        <MuiTable stickyHeader {...slotProps?.table}>
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id as Key}
+                  align={column.align}
+                  sx={{
+                    minWidth: column.minWidth,
+                  }}
+                  sortDirection={
+                    orderBy === column.id && order !== undefined ? order : false
+                  }
+                >
+                  <TableSortLabel
+                    IconComponent={() =>
+                      !column.sortable ? (
+                        <></>
+                      ) : (
+                        <CustomTooltip
+                          arrow
+                          enterDelay={300}
+                          leaveDelay={300}
+                          disableInteractive
+                          title={getSortMessage(column.id)}
+                          placement={"top"}
+                        >
+                          <Box
+                            component={"img"}
+                            src={
+                              orderBy === column.id
+                                ? order === "asc"
+                                  ? "/assets/icons/sort-asc.svg"
+                                  : order === "desc"
+                                    ? "/assets/icons/sort-desc.svg"
+                                    : "/assets/icons/sort.svg"
+                                : "/assets/icons/sort.svg"
+                            }
+                            alt={"sort icon"}
+                            sx={{ width: 12, height: 20 }}
+                          />
+                        </CustomTooltip>
+                      )
                     }
-                  >
-                    <TableSortLabel
-                      IconComponent={() =>
-                        !column.sortable ? (
-                          <></>
-                        ) : (
-                          <CustomTooltip
-                            arrow
-                            enterDelay={300}
-                            leaveDelay={300}
-                            disableInteractive
-                            title={getSortMessage(column.id)}
-                            placement={"top"}
-                          >
-                            <Box
-                              component={"img"}
-                              src={
-                                orderBy === column.id
-                                  ? order === "asc"
-                                    ? "/assets/icons/sort-asc.svg"
-                                    : order === "desc"
-                                      ? "/assets/icons/sort-desc.svg"
-                                      : "/assets/icons/sort.svg"
-                                  : "/assets/icons/sort.svg"
-                              }
-                              alt={"sort icon"}
-                              sx={{ width: 12, height: 20 }}
-                            />
-                          </CustomTooltip>
-                        )
-                      }
-                      sx={{
-                        pointerEvents: !column.sortable ? "none" : "auto",
-                        display: "flex",
-                      }}
-                      active={orderBy === column.id}
-                      direction={
-                        orderBy === column.id
-                          ? order === undefined
-                            ? undefined
-                            : order
-                          : undefined
-                      }
-                      onClick={() => handleSort(column.id as keyof Data)}
-                    >
-                      {column.label}
-                    </TableSortLabel>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {isLoading ? (
-                <TableRow>
-                  <TableCell
-                    height={250}
-                    colSpan={columns.length}
-                    align={"center"}
-                  >
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              ) : (children ?? sortedData.length === 0) ? (
-                <TableRow>
-                  <TableCell
-                    height={250}
-                    colSpan={columns.length}
-                    align={"center"}
-                  >
-                    {noData ? noData : <Typography>{"No Data"}</Typography>}
-                  </TableCell>
-                </TableRow>
-              ) : (
-                sortedData?.map((row, index) => (
-                  <TableRow
-                    hover
-                    key={(row["id" as keyof Data] || index) as Key}
                     sx={{
-                      backgroundColor:
-                        index % 2 !== 0 ? "#F1F1F1" : "transparent",
-                      borderBottom: "1px solid #D2D1D173",
+                      pointerEvents: !column.sortable ? "none" : "auto",
+                      display: "flex",
                     }}
+                    active={orderBy === column.id}
+                    direction={
+                      orderBy === column.id
+                        ? order === undefined
+                          ? undefined
+                          : order
+                        : undefined
+                    }
+                    onClick={() => handleSort(column.id as keyof Data)}
                   >
-                    {columns.map((column) => {
-                      const value =
-                        row[column.dataKey ?? (column.id as keyof Data)];
-                      const getCell = () => {
-                        if (column.render) {
-                          return column.render(row);
-                        }
-                        return (
-                          <Typography
-                            sx={{
-                              fontSize: 16,
-                              fontWeight: 500,
-                              color: "#4C4C4C",
-                            }}
-                            variant={"h6"}
-                          >
-                            {`${value}`}
-                          </Typography>
-                        );
-                      };
-
+                    {column.label}
+                  </TableSortLabel>
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {isLoading ? (
+              <TableRow>
+                <TableCell
+                  height={250}
+                  colSpan={columns.length}
+                  align={"center"}
+                >
+                  <CircularProgress />
+                </TableCell>
+              </TableRow>
+            ) : (children ?? sortedData.length === 0) ? (
+              <TableRow>
+                <TableCell
+                  height={250}
+                  colSpan={columns.length}
+                  align={"center"}
+                >
+                  {noData ? noData : <Typography>{"No Data"}</Typography>}
+                </TableCell>
+              </TableRow>
+            ) : (
+              sortedData?.map((row, index) => (
+                <TableRow
+                  hover
+                  key={(row["id" as keyof Data] || index) as Key}
+                  sx={{
+                    backgroundColor:
+                      index % 2 !== 0 ? "#F1F1F1" : "transparent",
+                    borderBottom: "1px solid #D2D1D173",
+                  }}
+                >
+                  {columns.map((column) => {
+                    const value =
+                      row[column.dataKey ?? (column.id as keyof Data)];
+                    const getCell = () => {
+                      if (column.render) {
+                        return column.render(row);
+                      }
                       return (
-                        <TableCell key={column.id as Key} align={column.align}>
-                          {getCell()}
-                        </TableCell>
+                        <Typography
+                          sx={{
+                            fontSize: 16,
+                            fontWeight: 500,
+                            color: "#4C4C4C",
+                          }}
+                          variant={"h6"}
+                        >
+                          {`${value}`}
+                        </Typography>
                       );
-                    })}
-                  </TableRow>
-                ))
-              )}
-            </TableBody>
-          </MuiTable>
-        </TableContainer>
-        <TablePagination
-          rowsPerPage={rowsPerPage}
-          count={pagination?.count ?? -1}
-          page={currentPage}
-          onPageChange={pagination?.onPageChange}
-        />
-      </>
+                    };
+
+                    return (
+                      <TableCell key={column.id as Key} align={column.align}>
+                        {getCell()}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </MuiTable>
+      </TableContainer>
     )
   );
 }

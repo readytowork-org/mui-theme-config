@@ -30,14 +30,10 @@ export interface TableProps<T extends object> {
   columns: ColumnType<T>[];
   isLoading?: boolean;
   children?: React.ReactNode;
-  pagination?: PaginationProps;
-  title?: string;
   data: T[];
   noData?: React.ReactNode;
   slotProps?: {
     root?: TableContainerProps;
-    titleBar?: BoxProps;
-    title?: TypographyProps;
     table?: MuiTableProps;
   };
 }
