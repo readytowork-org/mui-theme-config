@@ -1,78 +1,83 @@
-import {
-  FormHelperText,
-  InputLabel,
-  Stack,
-  StackProps,
-  SxProps,
-  Theme,
-  Typography
-} from '@mui/material';
-import React, { FC } from 'react';
+import Box from "@mui/material/Box";
+import FormHelperText from "@mui/material/FormHelperText";
+import InputLabel from "@mui/material/InputLabel";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import React from "react";
+import { StackProps, StackTypeMap } from "@mui/material/Stack/Stack";
+import { SxProps, Theme } from "@mui/material/styles";
 
-export interface FormInputProps extends StackProps {
+export type FormInputProps<
+  RootComponent extends React.ElementType = StackTypeMap["defaultComponent"],
+  AdditionalProps = object,
+> = StackProps<RootComponent, AdditionalProps> & {
   verticalLabelDirection?: boolean;
   children: React.ReactNode;
   label: string | React.ReactNode;
   required?: boolean;
   error?: string;
-  labelSize?: 'small' | 'medium' | 'large';
+  labelSize?: "small" | "medium" | "large";
   shrinkLabel?: boolean;
   labelMinWidth?: string;
   labelSx?: SxProps<Theme> | undefined;
-  formInputFlex?: number;
-}
+};
 
-const FormInput: FC<FormInputProps> = ({
+function FormInput<
+  RootComponent extends React.ElementType = StackTypeMap["defaultComponent"],
+  AdditionalProps = object,
+>({
   verticalLabelDirection = true,
   children,
   label,
   required,
   error,
-  labelSize = 'small',
-  shrinkLabel = false,
-  labelMinWidth = '80px',
+  labelSize = "small",
   labelSx,
-  formInputFlex,
+  component,
   ...rest
-}) => {
+}: FormInputProps<RootComponent, AdditionalProps>) {
   return (
     <Stack
-      direction={verticalLabelDirection ? 'column' : 'row'}
-      alignItems={verticalLabelDirection ? '' : 'center'}
-      justifyContent={verticalLabelDirection ? 'stretch' : ''}
-      gap={verticalLabelDirection ? '' : '12px'}
-      sx={{ flex: formInputFlex ?? 1 }}
+      direction={verticalLabelDirection ? "column" : "row"}
+      alignItems={verticalLabelDirection ? "" : "center"}
+      justifyContent={verticalLabelDirection ? "stretch" : ""}
+      gap={verticalLabelDirection ? "" : "12px"}
+      component={component}
       {...rest}
     >
       <InputLabel
         sx={{
-          marginBottom: verticalLabelDirection ? '4px' : '0px',
-          minHeight: '26px',
-          display: 'flex',
-          alignItems: 'center',
-          whiteSpace: 'pre-wrap',
-          flexShrink: shrinkLabel ? '0' : '1',
-          minWidth: labelMinWidth ? labelMinWidth : 'auto',
+          marginBottom: verticalLabelDirection ? "4px" : "0px",
+          minHeight: "26px",
+          display: "flex",
+          alignItems: "center",
           fontSize:
-            labelSize == 'small'
-              ? '14px'
-              : labelSize == 'medium'
-              ? '16px'
-              : '18px',
-          ...labelSx
+            labelSize == "small"
+              ? "14px"
+              : labelSize == "medium"
+                ? "16px"
+                : "18px",
+          ...labelSx,
         }}
       >
         {label}
         {required && (
-          <Typography component={'span'} sx={{ color: '#EB3939' }}>
-            {' *'}
+          <Typography component={"span"} sx={{ color: "#EB3939" }}>
+            {" *"}
           </Typography>
         )}
       </InputLabel>
-      {children}
-      {error && <FormHelperText error>{error}</FormHelperText>}
+      <Box
+        display={"flex"}
+        justifyContent={"stretch"}
+        flex={verticalLabelDirection ? "" : 1}
+        flexDirection={"column"}
+      >
+        {children}
+        {error && <FormHelperText error>{error}</FormHelperText>}
+      </Box>
     </Stack>
   );
-};
+}
 
 export default FormInput;
