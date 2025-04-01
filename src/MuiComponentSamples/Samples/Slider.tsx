@@ -43,17 +43,17 @@ export default function SliderExample() {
         Volume
       </Typography>
       <Grid container spacing={2}>
-        <Grid item>
+        <Grid>
           <VolumeDown />
         </Grid>
-        <Grid item xs>
+        <Grid>
           <Slider
             value={value}
             onChange={handleChange}
             aria-labelledby="continuous-slider"
           />
         </Grid>
-        <Grid item>
+        <Grid>
           <VolumeUp />
         </Grid>
       </Grid>

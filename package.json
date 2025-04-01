@@ -1,6 +1,6 @@
 {
   "name": "mui-theme-config",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "license": "MIT",
   "author": "rtw",
   "main": "index.js",
@@ -31,10 +31,10 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.4.8",
-    "@mui/material": "^6.4.8",
-    "@mui/system": "^6.4.8",
-    "@mui/utils": "^6.4.8"
+    "@mui/icons-material": "^7.0.1",
+    "@mui/material": "^7.0.1",
+    "@mui/system": "^7.0.1",
+    "@mui/utils": "^7.0.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.10",

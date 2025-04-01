@@ -28,7 +28,7 @@ export default function CardExample() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item>
+      <Grid>
         <Typography variant="h6">Simple</Typography>
         <Card sx={{ minWidth: 275 }}>
           <CardContent>
@@ -62,7 +62,7 @@ export default function CardExample() {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item>
+      <Grid>
         <Typography variant="h6">Outlined</Typography>
         <Card variant="outlined" sx={{ minWidth: 275 }}>
           <CardContent>
@@ -96,7 +96,7 @@ export default function CardExample() {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item>
+      <Grid>
         <Typography variant="h6">Complex</Typography>
         <Card sx={{ minWidth: 345 }}>
           <CardHeader

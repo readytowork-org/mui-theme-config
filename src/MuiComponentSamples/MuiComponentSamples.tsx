@@ -1,4 +1,4 @@
-import { Box, Button, Grid2, Typography } from "@mui/material"
+import { Box, Button, Grid, Typography } from "@mui/material"
 import componentSamples from "./Samples"
 
 const MuiComponentSamples = () => {
@@ -9,7 +9,7 @@ const MuiComponentSamples = () => {
       </Typography>
       {componentSamples.map(({ id, title, component, docs }) => (
         <div key={id} id={id}>
-          <Grid2 container justifyContent="space-between" alignItems="center" padding="8px">
+          <Grid container justifyContent="space-between" alignItems="center" padding="8px">
             <Typography variant="h5" gutterBottom>
               {title}
             </Typography>
@@ -23,7 +23,7 @@ const MuiComponentSamples = () => {
             >
               Docs
             </Button>
-          </Grid2>
+          </Grid>
           <Box
             sx={{
               mb: 10,
