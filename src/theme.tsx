@@ -1,6 +1,6 @@
 "use client";
 
-import { createTheme, ThemeOptions } from "@mui/material/styles";
+import { ThemeOptions } from "@mui/material/styles";
 import React from "react";
 // noinspection TypeScriptCheckImport, ES6UnusedImports
 // @ts-ignore
