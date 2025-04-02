@@ -1,10 +1,7 @@
 {
-  "name": "mui-theme-config",
+  "name": "@rtw_np/mui-theme-config",
   "version": "2.1.7",
-  "license": "MIT",
-  "author": "rtw",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "description": "This package provides a shareable MUI theme configuration that can be used across multiple projects.",
   "keywords": [
     "mui",
     "theme",
@@ -12,22 +9,28 @@
     "react",
     "typescript"
   ],
+  "homepage": "https://github.com/readytowork-org/mui-theme-config#readme",
+  "bugs": {
+    "url": "https://github.com/readytowork-org/mui-theme-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readytowork-org/mui-theme-config.git"
+  },
+  "license": "MIT",
+  "author": "rtw",
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "**/*"
+  ],
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
     "prepare": "npm run build",
     "publish": "npm version patch f && npm publish --access public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/readytowork-org/mui-theme-config.git"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "**/*"
-  ],
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -49,5 +52,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.3.3",
     "typescript": "^5.8.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
