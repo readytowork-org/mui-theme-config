@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-theme-config",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "This package provides a shareable MUI theme configuration that can be used across multiple projects.",
   "keywords": [
     "mui",
