@@ -5,7 +5,6 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { StackProps, StackTypeMap } from "@mui/material/Stack/Stack";
-import { SxProps, Theme } from "@mui/material/styles";
 
 export type FormInputProps<
   RootComponent extends React.ElementType = StackTypeMap["defaultComponent"],
@@ -19,7 +18,6 @@ export type FormInputProps<
   labelSize?: "small" | "medium" | "large";
   shrinkLabel?: boolean;
   labelMinWidth?: string;
-  labelSx?: SxProps<Theme> | undefined;
 };
 
 function FormInput<
@@ -32,7 +30,6 @@ function FormInput<
   required,
   error,
   labelSize = "small",
-  labelSx,
   component,
   ...rest
 }: FormInputProps<RootComponent, AdditionalProps>) {
@@ -51,13 +48,6 @@ function FormInput<
           minHeight: "26px",
           display: "flex",
           alignItems: "center",
-          fontSize:
-            labelSize == "small"
-              ? "14px"
-              : labelSize == "medium"
-                ? "16px"
-                : "18px",
-          ...labelSx,
         }}
       >
         {label}
