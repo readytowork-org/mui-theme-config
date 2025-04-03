@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
+import Box, { type BoxProps } from "@mui/material/Box";
 import FormHelperText from "@mui/material/FormHelperText";
-import InputLabel from "@mui/material/InputLabel";
+import InputLabel, { type InputLabelProps } from "@mui/material/InputLabel";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -15,9 +15,10 @@ export type FormInputProps<
   label: string | React.ReactNode;
   required?: boolean;
   error?: string;
-  labelSize?: "small" | "medium" | "large";
-  shrinkLabel?: boolean;
-  labelMinWidth?: string;
+  slotProps?: {
+    label: InputLabelProps;
+    inputContainer: BoxProps;
+  };
 };
 
 function FormInput<
@@ -29,8 +30,7 @@ function FormInput<
   label,
   required,
   error,
-  labelSize = "small",
-  component,
+  slotProps,
   ...rest
 }: FormInputProps<RootComponent, AdditionalProps>) {
   return (
@@ -39,15 +39,16 @@ function FormInput<
       alignItems={verticalLabelDirection ? "" : "center"}
       justifyContent={verticalLabelDirection ? "stretch" : ""}
       gap={verticalLabelDirection ? "" : "12px"}
-      component={component}
       {...rest}
     >
       <InputLabel
+        {...slotProps?.label}
         sx={{
           marginBottom: verticalLabelDirection ? "4px" : "0px",
           minHeight: "26px",
           display: "flex",
           alignItems: "center",
+          ...slotProps?.label?.sx,
         }}
       >
         {label}
@@ -62,6 +63,7 @@ function FormInput<
         justifyContent={"stretch"}
         flex={verticalLabelDirection ? "" : 1}
         flexDirection={"column"}
+        {...slotProps?.inputContainer}
       >
         {children}
         {error && <FormHelperText error>{error}</FormHelperText>}
