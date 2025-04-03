@@ -42,6 +42,7 @@ function FormInput<
       {...rest}
     >
       <InputLabel
+        required={required}
         {...slotProps?.label}
         sx={{
           marginBottom: verticalLabelDirection ? "4px" : "0px",
@@ -52,11 +53,6 @@ function FormInput<
         }}
       >
         {label}
-        {required && (
-          <Typography component={"span"} sx={{ color: "#EB3939" }}>
-            {" *"}
-          </Typography>
-        )}
       </InputLabel>
       <Box
         display={"flex"}

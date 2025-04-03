@@ -302,6 +302,9 @@ export const APP_THEME = (
           color: theme.palette.text.primary,
           lineHeight: "20.27px",
         }),
+        asterisk: ({ theme }) => ({
+          color: theme.palette.error.main,
+        }),
       },
     },
     MuiAutocomplete: {
